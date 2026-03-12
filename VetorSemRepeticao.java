@@ -1,38 +1,39 @@
 import java.util.Scanner;
 
-public class VetorSemRepeticao {
+public class VetorSemRepetidos {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int[] vetor = new int[10];
 
         for (int i = 0; i < 10; i++) {
-            System.out.print("Digite um número: ");
-            int num = sc.nextInt();
 
-            boolean repetido = false;
+            boolean repetido;
 
-            for (int j = 0; j < i; j++) {
-                if (vetor[j] == num) {
-                    repetido = true;
-                    break;
+            do {
+                repetido = false;
+
+                System.out.print("Digite o número para a posição " + i + ": ");
+                vetor[i] = scanner.nextInt();
+
+                for (int j = 0; j < i; j++) {
+                    if (vetor[i] == vetor[j]) {
+                        repetido = true;
+                        System.out.println("Número repetido! Digite um valor diferente.");
+                        break;
+                    }
                 }
-            }
 
-            if (repetido) {
-                System.out.println("Número repetido! Digite outro.");
-                i--;
-            } else {
-                vetor[i] = num;
-            }
+            } while (repetido);
         }
 
-        System.out.println("Números digitados:");
+        System.out.println("\nNúmeros digitados:");
 
-        for (int i = 0; i < vetor.length; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.print(vetor[i] + " ");
         }
 
-        sc.close();
+        scanner.close();
     }
 }
+
